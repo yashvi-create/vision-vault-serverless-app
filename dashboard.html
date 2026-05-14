@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phoenix Vision Vault | Manifesting</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,600&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-gradient: linear-gradient(135deg, #fff5f5 0%, #f3e8ff 50%, #e0e7ff 100%);
+            --glass: rgba(255, 255, 255, 0.6);
+            --text-main: #1e1b4b; /* Dark Indigo for best contrast */
+            --accent-pink: #be185d;
+            --soft-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            background: var(--bg-gradient);
+            min-height: 100vh;
+            margin: 0;
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text-main);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 60px 20px;
+        }
+
+        /* Header Section */
+        .header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-style: italic;
+            margin: 0;
+            letter-spacing: -1px;
+            color: var(--text-main);
+        }
+
+        .header p {
+            font-weight: 400;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            color: var(--accent-pink);
+            margin-top: 10px;
+        }
+
+        /* Grid Layout */
+        .vault-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* Balanced 3-column grid */
+            gap: 35px;
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        /* Card Aesthetic */
+        .card {
+            background: var(--glass);
+            backdrop-filter: blur(15px);
+            border-radius: 45px; /* Softer, more "girly" curves */
+            border: 1px solid rgba(255, 255, 255, 0.9);
+            overflow: hidden;
+            box-shadow: var(--soft-shadow);
+            transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+            opacity: 0;
+            animation: slideUp 0.8s ease forwards;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 30px 60px rgba(190, 24, 93, 0.2);
+            border: 1px solid var(--accent-pink);
+        }
+
+        /* Image Display */
+        .image-container {
+            height: 280px;
+            overflow: hidden;
+            background: #f1f5f9;
+        }
+
+        .card-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 1.2s ease;
+        }
+
+        .card:hover .card-image {
+            transform: scale(1.1);
+        }
+
+        /* Content Area */
+        .card-content {
+            padding: 35px;
+            background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,0.5) 100%);
+        }
+
+        .category {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+            color: var(--accent-pink);
+            margin-bottom: 12px;
+            display: block;
+            text-transform: uppercase;
+        }
+
+        .title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.9rem;
+            color: var(--text-main);
+            margin-bottom: 15px;
+            line-height: 1.2;
+        }
+
+        .vibe {
+            font-size: 0.95rem;
+            font-weight: 300;
+            line-height: 1.6;
+            color: #475569;
+            font-style: italic;
+        }
+
+        /* Mobile View */
+        @media (max-width: 950px) {
+            .vault-grid { grid-template-columns: 1fr; }
+            .header h1 { font-size: 2.5rem; }
+        }
+
+        .loader {
+            grid-column: 1 / -1;
+            text-align: center;
+            font-style: italic;
+            padding: 50px;
+            color: var(--accent-pink);
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <h1>The Vision Vault</h1>
+    <p>dream big • deploy global</p>
+</div>
+
+<div class="container" style="width: 100%; max-width: 1200px;">
+    <div class="vault-grid" id="vault-grid">
+        <div id="loader" class="loader">connecting to the cloud brain... ✨</div>
+    </div>
+</div>
+
+<script>
+    // --- PASTE YOUR LAMBDA URL BELOW ---
+    const API_URL = 'https://mr7omjkf2ywp6mqu5tnv3wpnwq0dwbfp.lambda-url.us-east-1.on.aws/';
+
+    async function fetchGoals() {
+        try {
+        const data = [
+  {
+    Category: "Travel",
+    Title: "Paris, France",
+    Vibe: "Pink Sunset & Cafes",
+    ImageURL: "https://images.unsplash.com/photo-1511739001486-6bfe10ce785f?q=80&w=600"
+  },
+  {
+    Category: "Career",
+    Title: "Pinterest Design Engineer",
+    Vibe: "Dreaming",
+    ImageURL: "https://images.pexels.com/photos/6347914/pexels-photo-6347914.jpeg?auto=compress&cs=tinysrgb&w=600"
+  },
+  {
+    Category: "Lifestyle",
+    Title: "Luxury Workspace",
+    Vibe: "White Peonies & Minimalist Tech",
+    ImageURL: "https://images.unsplash.com/photo-1497366754035-f200968a6e72?q=80&w=600"
+  }
+];
+            /*const response = await fetch(API_URL);
+            const data = await response.json();
+            */
+           
+            const grid = document.getElementById('vault-grid');
+            const loader = document.getElementById('loader');
+            
+            loader.style.display = 'none';
+            
+            data.forEach((item, index) => {
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.style.animationDelay = `${index * 0.2}s`;
+                
+                // Use the image if available, otherwise show a soft gradient
+                const imgTag = item.ImageURL 
+                    ? `<img src="${item.ImageURL}" class="card-image" alt="Vision">`
+                    : `<div style="width:100%; height:100%; background: linear-gradient(45deg, #fce7f3, #f3e8ff);"></div>`;
+
+                card.innerHTML = `
+                    <div class="image-container">${imgTag}</div>
+                    <div class="card-content">
+                        <span class="category">${item.Category || 'Dream'}</span>
+                        <div class="title">${item.Title}</div>
+                        <div class="vibe">“${item.Vibe || item.Status}”</div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        } catch (e) {
+            console.error(e);
+            document.getElementById('loader').innerText = "Cloud connection error. Check your CORS! 🎀";
+        }
+    }
+    fetchGoals();
+</script>
+
+</body>
+</html>
