@@ -26,7 +26,7 @@ Vision Vault is a cloud-based serverless application designed to track travel dr
 
 ## Architecture Diagram
 
-![Architecture](vision-vault-architecture.png)
+![Architecture](vision-vault-architecture.drawio.png)
 
 ---
 
